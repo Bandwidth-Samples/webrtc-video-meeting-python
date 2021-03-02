@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  background-color: #000;
+  color: #2d282b;
+  font-family: "Overpass", sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 200;
+}
+/**
+ * Classes for the main area
+ */
+.outer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#main_area {
+  width: 100%;
+  height: auto;
+}
+#my_video_area {
+  position: absolute;
+  top: 30;
+  right: 20;
+  padding-right: 10px;
+  margin-right: 10px;
+  display: block;
+  z-index: 20;
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+
+  opacity: 0.8;
+  filter: alpha(opacity=.8);
+  transition: "opacity .5s ease-in-out";
+}
+#my_video_area:hover {
+  opacity: 0.2;
+  filter: alpha(opacity=.2);
+  transition: "opacity .1s ease-in-out";
+}
+#my_video {
+  height: 80px;
+  width: 110px;
+  border: 1px solid #fff;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+}
+video {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+#videos {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  z-index: 0;
+}
+#share {
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+
+.tile {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0px;
+  z-index: 5;
+}
+.namer {
+  z-index: 20;
+
+  position: absolute;
+  left: 10px;
+  top: 3px;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 200;
+  -webkit-text-stroke: 2px rgb(148, 253, 253);
+}
+
+.sign_on_controls {
+  padding: 20px 30px;
+  width: 420px;
+  margin-left: -230px;
+  margin-top: -170px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  background-color: #fff;
+
+  text-align: left;
+  font-size: 18px;
+  font-weight: 700;
+
+  z-index: 100;
+}
+#in_call_controls {
+  padding: 4px 10px 0px;
+  width: 390px;
+  margin-left: -210px;
+  height: 25px;
+
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+
+  background-color: #fff;
+
+  z-index: 75;
+  display: none;
+}
+
+.top-rounded {
+  border: 1px solid #ddd;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.bottom-rounded {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.button {
+  text-decoration: none;
+  background-color: #079cee;
+  padding: 11px 30px;
+  border-radius: 20px;
+  color: #fff;
+
+  transition-property: background;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+
+  text-transform: uppercase;
+}
+.button:hover {
+  background-color: #084062;
+  color: #fff;
+}
+.button:active {
+  color: #079cee;
+}
+select,
+input {
+  float: right;
+  font-family: "Overpass", sans-serif;
+  font-size: 16px;
+  width: 250px;
+}
+.input_block {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 10px;
+}
