@@ -2,8 +2,6 @@
 
 # Python Simple Video Meeting App
 
-![BW_all](../../.readme_images/BW_all.png)
-
 </div>
 This sample app shows how to use our Video and Voice APIs to create a basic multi-person, multi-'room' video application using NodeJS and minimalist browser-side Javascript.
 
