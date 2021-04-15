@@ -277,7 +277,7 @@ def add_participant_to_session(session_id, participant_id):
 def initiate_call_to_pstn(from_number, to_number):
     '''
     Start a call to the PSTN using our Voice APIs
-    :param from_number  the number that shows up in the "caller id"
+    :param from_number the number that shows up in the "caller id"
     :param to_number the number you want to call out to
     '''
     voice_client: APIController = bandwidth_client.voice_client.client
