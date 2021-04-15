@@ -104,7 +104,7 @@ Note that we have hardcoded the FROM and TO here. You may wish to make your FROM
 | `BW_PASSWORD`         | Your Bandwidth API Password                                       | `hunter22`                             |
 | `BW_VOICE_APPLICATION_ID` | Your Bandwidth Voice application ID                               | `acd1575d-b0f7-4274-95ee-e942a286df8c` |
 | `BASE_CALLBACK_URL`    | The url for your dev server, with ending /                        | `https://e8b0c1c2a03e.ngrok.io/`       |
-| `BW_NUMBER`          | The "From" caller Id number for your call                         | `+13428675309`                         |
+| ``          | The "From" caller Id number for your call                         | `+13428675309`                         |
 | `USER_NUMBER`          | the number to dial out to when you click "Dial Out" in the Web UI | `+14835552343`                         |
 
 ### Commands
