@@ -156,7 +156,7 @@ def end_pstn_call():
     '''
     global pstnParticipant
     print("end_pstn_call> hangup up on PSTN call")
-    end_call_to_pstn(config['bandwidth']['account_id'],
+    end_call_to_pstn(config['bandwidth']['BW_ACCOUNT_ID'],
                      pstnParticipant.call_id)
     res = {"status": "hungup"}
     return json.dumps(res)
@@ -208,10 +208,10 @@ def get_session_id(room_name, tag):
     }
     try:
         print(
-            f"Calling out to createSession for account#{config['bandwidth']['account_id']} with body: {json.dumps(body)} ")
+            f"Calling out to createSession for account#{config['bandwidth']['BW_ACCOUNT_ID']} with body: {json.dumps(body)} ")
         webrtc_client: APIController = bandwidth_client.web_rtc_client.client
         api_response: ApiResponse = webrtc_client.create_session(
-            config['bandwidth']['account_id'], body)
+            config['bandwidth']['BW_ACCOUNT_ID'], body)
 
         save_session_id(room_name, api_response.body.id)
         return api_response.body.id
@@ -239,7 +239,7 @@ def create_participant(tag, allowVideo):
     try:
         webrtc_client: APIController = bandwidth_client.web_rtc_client.client
         api_response: ApiResponse = webrtc_client.create_participant(
-            config['bandwidth']['account_id'], body)
+            config['bandwidth']['BW_ACCOUNT_ID'], body)
 
         participant = api_response.body.participant
         participant.token = api_response.body.token
@@ -264,7 +264,7 @@ def add_participant_to_session(session_id, participant_id):
     try:
         webrtc_client: APIController = bandwidth_client.web_rtc_client.client
         api_response: ApiResponse = webrtc_client.add_participant_to_session(
-            config['bandwidth']['account_id'], session_id, participant_id, body)
+            config['bandwidth']['BW_ACCOUNT_ID'], session_id, participant_id, body)
 
         return None
 
@@ -292,7 +292,7 @@ def initiate_call_to_pstn(from_number, to_number):
 
     try:
         response = voice_client.create_call(
-            config['bandwidth']['account_id'], body=body)
+            config['bandwidth']['BW_ACCOUNT_ID'], body=body)
         return response.body.call_id
     except APIException as e:
         print(
@@ -302,7 +302,7 @@ def initiate_call_to_pstn(from_number, to_number):
 def end_call_to_pstn(call_id):
     '''
     End the call to the PSTN using our Voice APIs
-    :param account_id
+    :param BW_ACCOUNT_ID
     :param call_id
     '''
     voice_client: APIController = bandwidth_client.voice_client.client
@@ -311,7 +311,7 @@ def end_call_to_pstn(call_id):
     }
     try:
         response = voice_client.modify_call(
-            config['bandwidth']['account_id'], call_id, body=body)
+            config['bandwidth']['BW_ACCOUNT_ID'], call_id, body=body)
         return None
     except APIException as e:
         print(

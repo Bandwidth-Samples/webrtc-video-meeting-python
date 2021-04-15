@@ -99,7 +99,7 @@ Note that we have hardcoded the FROM and TO here. You may wish to make your FROM
 
 | Variable               | Description                                                       | Example                                |
 | :--------------------- | :---------------------------------------------------------------- | :------------------------------------- |
-| `account_id`           | Your Bandwidth Account Id                                         | `539525`                               |
+| `BW_ACCOUNT_ID`           | Your Bandwidth Account Id                                         | `539525`                               |
 | `api_user`             | Your Bandwidth API Username                                       | `johnDoe`                              |
 | `api_password`         | Your Bandwidth API Password                                       | `hunter22`                             |
 | `voice_application_id` | Your Bandwidth Voice application ID                               | `acd1575d-b0f7-4274-95ee-e942a286df8c` |
