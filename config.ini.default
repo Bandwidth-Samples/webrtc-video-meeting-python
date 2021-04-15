@@ -4,22 +4,22 @@
 # the username and password for a user with API permissions
 [bandwidth]
 BW_ACCOUNT_ID = 
-api_user = 
-api_password = 
+BW_USERNAME = 
+BW_PASSWORD = 
 # Create your voice application within Bandwidth and then paste the Application Id here
-voice_application_id = 
+BW_VOICE_APPLICATION_ID = 
 
 [server]
 # Your dev server, perhaps an ngrok server when in development, include ending "/"
 #  remember to update this every time you restart ngrok if you are using that
-base_callback_url = 
+BASE_CALLBACK_URL = 
 
 [outbound_call]
 # The "From" caller Id number for your call
 # From number does not have to be a Bandwidth number
 #  - though you *must* use a valid number that you have the authority to start calls from
-from_number = 
+BW_NUMBER = 
 # The number to dial out to when you click "Dial Out" in the Web UI
 #  you can later easily make this dynamic in your app, 
 #  but hardcoded is easiest and less likely to end up having you dial someone else by accident
-dial_number =
+USER_NUMBER =

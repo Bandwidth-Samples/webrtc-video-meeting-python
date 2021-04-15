@@ -28,17 +28,17 @@ from bandwidth.exceptions.api_exception import APIException
 config = configparser.ConfigParser()
 config.read('config.ini')
 try:
-    config['bandwidth']['api_user']
-    config['bandwidth']['api_password']
+    config['bandwidth']['BW_USERNAME']
+    config['bandwidth']['BW_PASSWORD']
 except error:
     print("Please set the config variables defined in the README", error)
     exit(-1)
 
 bandwidth_client = BandwidthClient(
-    voice_basic_auth_user_name=config['bandwidth']['api_user'],
-    voice_basic_auth_password=config['bandwidth']['api_password'],
-    web_rtc_basic_auth_user_name=config['bandwidth']['api_user'],
-    web_rtc_basic_auth_password=config['bandwidth']['api_password'],
+    voice_basic_auth_user_name=config['bandwidth']['BW_USERNAME'],
+    voice_basic_auth_password=config['bandwidth']['BW_PASSWORD'],
+    web_rtc_basic_auth_user_name=config['bandwidth']['BW_USERNAME'],
+    web_rtc_basic_auth_password=config['bandwidth']['BW_PASSWORD'],
 )
 
 app = Flask(__name__)
@@ -129,7 +129,7 @@ def start_pstn_call():
     # From number does not have to be a Bandwidth number
     #  - though you *must* use a valid number that you have the authority to start calls from
     pstnParticipant.call_id = initiate_call_to_pstn(
-        config['outbound_call']['from_number'], config['outbound_call']['dial_number'])
+        config['outbound_call']['BW_NUMBER'], config['outbound_call']['USER_NUMBER'])
 
     res = {"status": "ringing"}
     return json.dumps(res)
@@ -274,19 +274,19 @@ def add_participant_to_session(session_id, participant_id):
         return None
 
 
-def initiate_call_to_pstn(from_number, to_number):
+def initiate_call_to_pstn(BW_NUMBER, to_number):
     '''
     Start a call to the PSTN using our Voice APIs
-    :param from_number the number that shows up in the "caller id"
+    :param BW_NUMBER the number that shows up in the "caller id"
     :param to_number the number you want to call out to
     '''
     voice_client: APIController = bandwidth_client.voice_client.client
     # Create phone call
     body = {
-        "from": from_number,
+        "from": BW_NUMBER,
         "to": to_number,
-        "applicationId": config['bandwidth']['voice_application_id'],
-        "answerUrl": config['server']['base_callback_url'] + "Callbacks/answer",
+        "applicationId": config['bandwidth']['BW_VOICE_APPLICATION_ID'],
+        "answerUrl": config['server']['BASE_CALLBACK_URL'] + "Callbacks/answer",
         "callTimeout": 30
     }
 
