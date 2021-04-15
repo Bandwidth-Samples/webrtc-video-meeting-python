@@ -22,4 +22,4 @@ BASE_CALLBACK_URL =
 # The number to dial out to when you click "Dial Out" in the Web UI
 #  you can later easily make this dynamic in your app, 
 #  but hardcoded is easiest and less likely to end up having you dial someone else by accident
-USER_NUMBER =
+TO_NUMBER =

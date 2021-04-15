@@ -129,7 +129,7 @@ def start_pstn_call():
     # From number does not have to be a Bandwidth number
     #  - though you *must* use a valid number that you have the authority to start calls from
     pstnParticipant.call_id = initiate_call_to_pstn(
-        config['outbound_call'][''], config['outbound_call']['USER_NUMBER'])
+        config['outbound_call'][''], config['outbound_call']['TO_NUMBER'])
 
     res = {"status": "ringing"}
     return json.dumps(res)
