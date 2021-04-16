@@ -99,13 +99,13 @@ Note that we have hardcoded the FROM and TO here. You may wish to make your FROM
 
 | Variable               | Description                                                       | Example                                |
 | :--------------------- | :---------------------------------------------------------------- | :------------------------------------- |
-| `account_id`           | Your Bandwidth Account Id                                         | `539525`                               |
-| `api_user`             | Your Bandwidth API Username                                       | `johnDoe`                              |
-| `api_password`         | Your Bandwidth API Password                                       | `hunter22`                             |
-| `voice_application_id` | Your Bandwidth Voice application ID                               | `acd1575d-b0f7-4274-95ee-e942a286df8c` |
-| `base_callback_url`    | The url for your dev server, with ending /                        | `https://e8b0c1c2a03e.ngrok.io/`       |
-| `from_number`          | The "From" caller Id number for your call                         | `+13428675309`                         |
-| `dail_number`          | the number to dial out to when you click "Dial Out" in the Web UI | `+14835552343`                         |
+| `BW_ACCOUNT_ID`           | Your Bandwidth Account Id                                         | `539525`                               |
+| `BW_USERNAME`             | Your Bandwidth API Username                                       | `johnDoe`                              |
+| `BW_PASSWORD`         | Your Bandwidth API Password                                       | `hunter22`                             |
+| `BW_VOICE_APPLICATION_ID` | Your Bandwidth Voice application ID                               | `acd1575d-b0f7-4274-95ee-e942a286df8c` |
+| `BASE_CALLBACK_URL`    | The url for your dev server, with ending /                        | `https://e8b0c1c2a03e.ngrok.io/`       |
+| `FROM_NUMBER`          | The "From" caller Id number for your call                         | `+13428675309`                         |
+| `TO_NUMBER`          | the number to dial out to when you click "Dial Out" in the Web UI | `+14835552343`                         |
 
 ### Commands
 
