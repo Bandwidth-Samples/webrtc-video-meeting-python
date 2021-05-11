@@ -2,4 +2,3 @@ flask
 bandwidth-sdk
 configparser
 jwt
-json

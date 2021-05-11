@@ -2,4 +2,5 @@
 config.ini
 __pycache__
 Pipfile*
-
+.idea/
+*.iml

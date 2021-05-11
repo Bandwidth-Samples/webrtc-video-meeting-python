@@ -3,7 +3,7 @@
 //
 const DEBUG = true;
 // a div to update with status messages re: progress of getting online
-const statusDiv = null;
+var statusDiv = null;
 // a div to append log messages to on screen
 const logDiv = false;
 

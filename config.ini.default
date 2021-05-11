@@ -10,7 +10,7 @@ BW_PASSWORD =
 BW_VOICE_APPLICATION_ID = 
 
 [server]
-# Your dev server, perhaps an ngrok server when in development, include ending "/"
+# Your dev server, perhaps an ngrok server when in development, without trailing "/"
 #  remember to update this every time you restart ngrok if you are using that
 BASE_CALLBACK_URL = 
 
@@ -18,8 +18,4 @@ BASE_CALLBACK_URL =
 # The "From" caller Id number for your call
 # From number does not have to be a Bandwidth number
 #  - though you *must* use a valid number that you have the authority to start calls from
-FROM_NUMBER = 
-# The number to dial out to when you click "Dial Out" in the Web UI
-#  you can later easily make this dynamic in your app, 
-#  but hardcoded is easiest and less likely to end up having you dial someone else by accident
-TO_NUMBER =
+BW_NUMBER =

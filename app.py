@@ -7,30 +7,20 @@ A simple WebRTC Call control server that shows the basics of
 @copyright Bandwidth INC
 """
 
-import sys
-import json
-import os
-import jwt
 import configparser
-from flask import Flask, request, send_from_directory, Response
-# from bandwidth.messaging.models.bandwidth_callback_message import BandwidthCallbackMessage
-# from bandwidth.messaging.models.bandwidth_message import BandwidthMessage
-from bandwidth.api_helper import APIHelper
+import json
+
 from bandwidth.bandwidth_client import BandwidthClient
-# from bandwidth.messaging.controllers.api_controller import APIController, ApiResponse
-# from bandwidth.messaging.messaging_client import MessagingClient
-# from bandwidth.messaging.models.message_request import MessageRequest
-from bandwidth.voice.bxml.verbs import PlayAudio, SpeakSentence, Gather, Hangup
-from bandwidth.webrtc.web_rtc_client import WebRtcClient
-from bandwidth.webrtc.utils.transfer_util import generate_transfer_bxml
 from bandwidth.exceptions.api_exception import APIException
+from bandwidth.webrtc.utils.transfer_util import generate_transfer_bxml
+from flask import Flask, request, send_from_directory, Response
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 try:
     config['bandwidth']['BW_USERNAME']
     config['bandwidth']['BW_PASSWORD']
-except error:
+except Exception as error:
     print("Please set the config variables defined in the README", error)
     exit(-1)
 
@@ -129,7 +119,9 @@ def start_pstn_call():
     # From number does not have to be a Bandwidth number
     #  - though you *must* use a valid number that you have the authority to start calls from
     pstnParticipant.call_id = initiate_call_to_pstn(
-        config['outbound_call']['FROM_NUMBER'], config['outbound_call']['TO_NUMBER'])
+        config['outbound_call']['BW_NUMBER'],
+        data['callee']['phone_number']
+    )
 
     res = {"status": "ringing"}
     return json.dumps(res)
@@ -209,9 +201,8 @@ def get_session_id(room_name, tag):
     try:
         print(
             f"Calling out to createSession for account#{config['bandwidth']['BW_ACCOUNT_ID']} with body: {json.dumps(body)} ")
-        webrtc_client: APIController = bandwidth_client.web_rtc_client.client
-        api_response: ApiResponse = webrtc_client.create_session(
-            config['bandwidth']['BW_ACCOUNT_ID'], body)
+        webrtc_client = bandwidth_client.web_rtc_client.client
+        api_response = webrtc_client.create_session(config['bandwidth']['BW_ACCOUNT_ID'], body)
 
         save_session_id(room_name, api_response.body.id)
         return api_response.body.id
@@ -235,11 +226,11 @@ def create_participant(tag, allowVideo):
     body = {
         "tag": tag,
         "publishPermissions": perms,
+        "deviceApiVersion": "V3"
     }
     try:
-        webrtc_client: APIController = bandwidth_client.web_rtc_client.client
-        api_response: ApiResponse = webrtc_client.create_participant(
-            config['bandwidth']['BW_ACCOUNT_ID'], body)
+        webrtc_client = bandwidth_client.web_rtc_client.client
+        api_response = webrtc_client.create_participant(config['bandwidth']['BW_ACCOUNT_ID'], body)
 
         participant = api_response.body.participant
         participant.token = api_response.body.token
@@ -262,9 +253,8 @@ def add_participant_to_session(session_id, participant_id):
         "sessionId": session_id
     }
     try:
-        webrtc_client: APIController = bandwidth_client.web_rtc_client.client
-        api_response: ApiResponse = webrtc_client.add_participant_to_session(
-            config['bandwidth']['BW_ACCOUNT_ID'], session_id, participant_id, body)
+        webrtc_client = bandwidth_client.web_rtc_client.client
+        webrtc_client.add_participant_to_session(config['bandwidth']['BW_ACCOUNT_ID'], session_id, participant_id, body)
 
         return None
 
@@ -280,13 +270,13 @@ def initiate_call_to_pstn(from_number, to_number):
     :param from_number the number that shows up in the "caller id"
     :param to_number the number you want to call out to
     '''
-    voice_client: APIController = bandwidth_client.voice_client.client
+    voice_client = bandwidth_client.voice_client.client
     # Create phone call
     body = {
         "from": from_number,
         "to": to_number,
         "applicationId": config['bandwidth']['BW_VOICE_APPLICATION_ID'],
-        "answerUrl": config['server']['BASE_CALLBACK_URL'] + "Callbacks/answer",
+        "answerUrl": config['server']['BASE_CALLBACK_URL'] + "/Callbacks/answer",
         "callTimeout": 30
     }
 
@@ -305,7 +295,7 @@ def end_call_to_pstn(call_id):
     :param BW_ACCOUNT_ID
     :param call_id
     '''
-    voice_client: APIController = bandwidth_client.voice_client.client
+    voice_client = bandwidth_client.voice_client.client
     body = {
         "state": "completed"
     }

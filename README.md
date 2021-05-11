@@ -60,7 +60,7 @@ The `/startPSTNCall` works in a similar fashion to `/joinCall` except it initiat
 
 ### Client Side
 
-There is a bit more going on in the javascript side, much of this isn't needed to get a basic session going. But since we are creating a basic (but admitidly ugly) video meeting system, there is more going on. We're not going to go into the details that aren't pertinent to setting up WebRTC sessions here.
+There is a bit more going on in the JavaScript side, much of this isn't needed to get a basic session going. But since we are creating a basic (but admitidly ugly) video meeting system, there is more going on. We're not going to go into the details that aren't pertinent to setting up WebRTC sessions here.
 
 There is one html file, `index.html` with very little going on, it just sets the stage. `main.js` handles most of the meeting logic and `webrtc_mgr.js` handles most audio and video work and interacting with the WebRTC SDK.
 
@@ -103,9 +103,8 @@ Note that we have hardcoded the FROM and TO here. You may wish to make your FROM
 | `BW_USERNAME`             | Your Bandwidth API Username                                       | `johnDoe`                              |
 | `BW_PASSWORD`         | Your Bandwidth API Password                                       | `hunter22`                             |
 | `BW_VOICE_APPLICATION_ID` | Your Bandwidth Voice application ID                               | `acd1575d-b0f7-4274-95ee-e942a286df8c` |
-| `BASE_CALLBACK_URL`    | The url for your dev server, with ending /                        | `https://e8b0c1c2a03e.ngrok.io/`       |
-| `FROM_NUMBER`          | The "From" caller Id number for your call                         | `+13428675309`                         |
-| `TO_NUMBER`          | the number to dial out to when you click "Dial Out" in the Web UI | `+14835552343`                         |
+| `BASE_CALLBACK_URL`    | The url for your dev server, without a trailing /                        | `https://e8b0c1c2a03e.ngrok.io/`       |
+| `BW_NUMBER`          | The "From" caller Id number for your call                         | `+13428675309`                         |
 
 ### Commands
 
