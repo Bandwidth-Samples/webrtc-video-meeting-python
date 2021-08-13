@@ -1,4 +1,4 @@
-bandwidth-sdk==9.1.0
+bandwidth-sdk==11.0.0
 CacheControl==0.12.6
 certifi==2020.12.5
 cffi==1.14.5

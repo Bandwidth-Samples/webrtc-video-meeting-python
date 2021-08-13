@@ -137,7 +137,14 @@ def voice_callback():
     '''
     global pstnParticipant
     print("voice_callback>Received answer callback")
-    bxml = generate_transfer_bxml(pstnParticipant.token).strip()
+
+    data = request.get_json()
+    print("data is %s" % json.dumps(data))
+
+    callId = data['callId']
+    print('Call ID %s"' % callId)
+
+    bxml = generate_transfer_bxml(pstnParticipant.token, callId).strip()
     return Response(bxml, content_type='text/xml')
 
 
